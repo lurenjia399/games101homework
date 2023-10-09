@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\vcpkg.D.ProgramFiles.vcpkg.vcpkgmaster.1.0.0\build\native\vcpkg.D.ProgramFiles.vcpkg.vcpkgmaster.props" Condition="Exists('..\packages\vcpkg.D.ProgramFiles.vcpkg.vcpkgmaster.1.0.0\build\native\vcpkg.D.ProgramFiles.vcpkg.vcpkgmaster.props')" />
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -19,7 +20,16 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pa0\main.cpp" />
+    <ClCompile Include="代码框架\main.cpp" />
+    <ClCompile Include="代码框架\rasterizer.cpp" />
+    <ClCompile Include="代码框架\Triangle.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="代码框架\rasterizer.hpp" />
+    <ClInclude Include="代码框架\Triangle.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -152,5 +162,13 @@
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\vcpkg.D.ProgramFiles.vcpkg.vcpkgmaster.1.0.0\build\native\vcpkg.D.ProgramFiles.vcpkg.vcpkgmaster.targets" Condition="Exists('..\packages\vcpkg.D.ProgramFiles.vcpkg.vcpkgmaster.1.0.0\build\native\vcpkg.D.ProgramFiles.vcpkg.vcpkgmaster.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\vcpkg.D.ProgramFiles.vcpkg.vcpkgmaster.1.0.0\build\native\vcpkg.D.ProgramFiles.vcpkg.vcpkgmaster.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\vcpkg.D.ProgramFiles.vcpkg.vcpkgmaster.1.0.0\build\native\vcpkg.D.ProgramFiles.vcpkg.vcpkgmaster.props'))" />
+    <Error Condition="!Exists('..\packages\vcpkg.D.ProgramFiles.vcpkg.vcpkgmaster.1.0.0\build\native\vcpkg.D.ProgramFiles.vcpkg.vcpkgmaster.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\vcpkg.D.ProgramFiles.vcpkg.vcpkgmaster.1.0.0\build\native\vcpkg.D.ProgramFiles.vcpkg.vcpkgmaster.targets'))" />
+  </Target>
 </Project>

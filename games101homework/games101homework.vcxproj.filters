@@ -24,6 +24,15 @@
     <ClCompile Include="代码框架\Triangle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="pa1\代码框架\rasterizer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pa1\代码框架\Triangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pa1\代码框架\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="代码框架\Triangle.hpp">
@@ -32,8 +41,17 @@
     <ClInclude Include="代码框架\rasterizer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="pa1\代码框架\rasterizer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pa1\代码框架\Triangle.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="pa1\代码框架\CMakeLists.txt" />
   </ItemGroup>
 </Project>

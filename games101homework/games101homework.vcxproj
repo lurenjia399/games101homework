@@ -20,16 +20,19 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="代码框架\main.cpp" />
-    <ClCompile Include="代码框架\rasterizer.cpp" />
-    <ClCompile Include="代码框架\Triangle.cpp" />
+    <ClCompile Include="pa1\代码框架\main.cpp" />
+    <ClCompile Include="pa1\代码框架\rasterizer.cpp" />
+    <ClCompile Include="pa1\代码框架\Triangle.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="代码框架\rasterizer.hpp" />
-    <ClInclude Include="代码框架\Triangle.hpp" />
+    <ClInclude Include="pa1\代码框架\rasterizer.hpp" />
+    <ClInclude Include="pa1\代码框架\Triangle.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="pa1\代码框架\CMakeLists.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

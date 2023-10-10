@@ -54,6 +54,9 @@ Eigen::Matrix4f get_projection_matrix(float eye_fov, float aspect_ratio,
     // TODO: Implement this function
     // Create the projection matrix for the given parameters.
     // Then return it.
+    // 注意这个透视投影矩阵
+    // 在第三列上，我们应该都乘上-1，但是在这里没乘，原因是
+    // games101上面的坐标系是右手系,而用opengl算出来的是左手系
     projection <<   1 / (aspect_ratio * std::tan(eye_fov / 360 * MY_PI)), 0, 0, 0,
                     0, 1 / std::tan(eye_fov / 360 * MY_PI), 0, 0,
                     0, 0, (-zNear - zFar) / (zNear - zFar), 2 * zNear * zFar / (zNear - zFar),
@@ -80,7 +83,7 @@ int main(int argc, const char** argv)
 
     rst::rasterizer r(700, 700);
 
-    Eigen::Vector3f eye_pos = {0, 0, 5};
+    Eigen::Vector3f eye_pos = {0, 0, -10};
 
     std::vector<Eigen::Vector3f> pos{{2, 0, -2}, {0, 2, -2}, {-2, 0, -2}};
 

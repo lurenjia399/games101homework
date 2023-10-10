@@ -57,6 +57,13 @@ int main(){
 
 
     std::cout << traslate * rotate * targetPoint << std::endl;
+
+    Eigen::Vector2f targetPoint3(2.0f, 2.0f);
+    Eigen::Vector2f targetPoint2(2.0f, 0.0f);
+    Eigen::Vector2f res = targetPoint2.cross(targetPoint3);
+
+    std::cout << res << std::endl;
+
     system("pause");
 
     return 0;

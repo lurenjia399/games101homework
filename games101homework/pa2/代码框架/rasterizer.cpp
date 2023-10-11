@@ -130,7 +130,8 @@ void rst::rasterizer::draw(pos_buf_id pos_buffer, ind_buf_id ind_buffer, col_buf
         t.setColor(1, col_y[0], col_y[1], col_y[2]);
         t.setColor(2, col_z[0], col_z[1], col_z[2]);
 
-        rasterize_triangle(t);
+        //rasterize_triangle(t);
+        rasterize_triangle_spss(t);
     }
 }
 
@@ -144,7 +145,6 @@ void rst::rasterizer::rasterize_triangle(const Triangle& t) {
     int x_max = fmax(fmax(t.v[1].x(), t.v[2].x()), t.v[0].x());
     int y_min = fmin(fmin(t.v[1].y(), t.v[2].y()), t.v[0].y());
     int y_max = fmax(fmax(t.v[1].y(), t.v[2].y()), t.v[0].y());
-
     
     for (int y = y_min; y <= y_max; y++)
     {
@@ -178,6 +178,56 @@ void rst::rasterizer::rasterize_triangle(const Triangle& t) {
     // TODO : set the current pixel (use the set_pixel function) to the color of the triangle (use getColor function) if it should be painted.
 }
 
+void rst::rasterizer::rasterize_triangle_spss(const Triangle& t) {
+    auto v = t.toVector4();
+
+    int x_min = fmin(fmin(t.v[1].x(), t.v[2].x()), v[0].x());
+    int x_max = fmax(fmax(t.v[1].x(), t.v[2].x()), t.v[0].x());
+    int y_min = fmin(fmin(t.v[1].y(), t.v[2].y()), t.v[0].y());
+    int y_max = fmax(fmax(t.v[1].y(), t.v[2].y()), t.v[0].y());
+
+    std::vector<float> bias{ 0.25, 0.25, 0.75, 0.75, 0.25 };
+
+    for (int y = y_min; y <= y_max; y++)
+    {
+        for (int x = x_min; x <= x_max; x++)
+        {
+            int depth = std::numeric_limits<float>::infinity();
+            int index = get_index(x, y);
+            for (int z = 0; z < 4; z++)
+            {
+                int sample_x = x + bias[z];
+                int sample_y = y + bias[z + 1];
+                if (insideTriangle(sample_x, sample_y, t.v))
+                {
+                    
+                    // 在三角形中
+                    auto [alpha, beta, gamma] = computeBarycentric2D(sample_x, sample_y, t.v);
+                    float w_reciprocal = 1.0 / (alpha / v[0].w() + beta / v[1].w() + gamma / v[2].w());
+                    float z_interpolated = alpha * v[0].z() / v[0].w() + beta * v[1].z() / v[1].w() + gamma * v[2].z() / v[2].w();
+                    z_interpolated *= w_reciprocal;
+
+                    int index_spss = index + z;
+                    if (z_interpolated < depth_buf_spss[index_spss])
+                    {
+
+                        depth_buf_spss[index_spss] = z_interpolated;
+                        frame_buf_spss[index_spss] = t.getColor() / 4;
+                        depth = std::min(depth, (int)z_interpolated);
+                    }
+                }
+            }
+
+            Eigen::Vector3f color = frame_buf_spss[index] + frame_buf_spss[index + 1] + frame_buf_spss[index + 2] + frame_buf_spss[index + 3];
+
+            depth_buf[get_index(x, y)] = depth;
+            set_pixel(Eigen::Vector3f(x, y, 0.f), color);
+            
+        }
+    }
+}
+
+
 void rst::rasterizer::set_model(const Eigen::Matrix4f& m)
 {
     model = m;
@@ -203,17 +253,34 @@ void rst::rasterizer::clear(rst::Buffers buff)
     {
         std::fill(depth_buf.begin(), depth_buf.end(), std::numeric_limits<float>::infinity());
     }
+
+    if ((buff & rst::Buffers::Color) == rst::Buffers::Color)
+    {
+        std::fill(frame_buf_spss.begin(), frame_buf_spss.end(), Eigen::Vector3f{ 0, 0, 0 });
+    }
+    if ((buff & rst::Buffers::Depth) == rst::Buffers::Depth)
+    {
+        std::fill(depth_buf_spss.begin(), depth_buf_spss.end(), std::numeric_limits<float>::infinity());
+    }
 }
 
 rst::rasterizer::rasterizer(int w, int h) : width(w), height(h)
 {
     frame_buf.resize(w * h);
     depth_buf.resize(w * h);
+
+    frame_buf_spss.resize(w * h * 4);
+    depth_buf_spss.resize(w * h * 4);
 }
 
 int rst::rasterizer::get_index(int x, int y)
 {
     return (height-1-y)*width + x;
+}
+
+int rst::rasterizer::get_index_spss(int x, int y)
+{
+    return (height*2 - 1 - y) * width*2 + x;
 }
 
 void rst::rasterizer::set_pixel(const Eigen::Vector3f& point, const Eigen::Vector3f& color)

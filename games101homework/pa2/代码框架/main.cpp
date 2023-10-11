@@ -56,7 +56,7 @@ int main(int argc, const char** argv)
 
     rst::rasterizer r(700, 700);
 
-    Eigen::Vector3f eye_pos = {0,0,15};
+    Eigen::Vector3f eye_pos = {0,0,8};
 
 
     std::vector<Eigen::Vector3f> pos

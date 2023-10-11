@@ -18,24 +18,36 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pa2\代码框架\global.hpp">
+    <ClInclude Include="pa3\Assignment3\Code\global.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pa2\代码框架\rasterizer.hpp">
+    <ClInclude Include="pa3\Assignment3\Code\OBJ_Loader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pa2\代码框架\Triangle.hpp">
+    <ClInclude Include="pa3\Assignment3\Code\rasterizer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pa3\Assignment3\Code\Shader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pa3\Assignment3\Code\Texture.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pa3\Assignment3\Code\Triangle.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pa2\代码框架\rasterizer.cpp">
+    <ClCompile Include="pa3\Assignment3\Code\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pa2\代码框架\Triangle.cpp">
+    <ClCompile Include="pa3\Assignment3\Code\rasterizer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pa2\代码框架\main.cpp">
+    <ClCompile Include="pa3\Assignment3\Code\Texture.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pa3\Assignment3\Code\Triangle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

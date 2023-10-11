@@ -23,14 +23,18 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pa2\代码框架\global.hpp" />
-    <ClInclude Include="pa2\代码框架\rasterizer.hpp" />
-    <ClInclude Include="pa2\代码框架\Triangle.hpp" />
+    <ClInclude Include="pa3\Assignment3\Code\global.hpp" />
+    <ClInclude Include="pa3\Assignment3\Code\OBJ_Loader.h" />
+    <ClInclude Include="pa3\Assignment3\Code\rasterizer.hpp" />
+    <ClInclude Include="pa3\Assignment3\Code\Shader.hpp" />
+    <ClInclude Include="pa3\Assignment3\Code\Texture.hpp" />
+    <ClInclude Include="pa3\Assignment3\Code\Triangle.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pa2\代码框架\main.cpp" />
-    <ClCompile Include="pa2\代码框架\rasterizer.cpp" />
-    <ClCompile Include="pa2\代码框架\Triangle.cpp" />
+    <ClCompile Include="pa3\Assignment3\Code\main.cpp" />
+    <ClCompile Include="pa3\Assignment3\Code\rasterizer.cpp" />
+    <ClCompile Include="pa3\Assignment3\Code\Texture.cpp" />
+    <ClCompile Include="pa3\Assignment3\Code\Triangle.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

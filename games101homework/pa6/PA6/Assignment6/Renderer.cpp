@@ -38,13 +38,15 @@ void Renderer::Render(const Scene& scene)
             Vector3f dir = normalize(Vector3f(x, y, 1.0));
 
             scene.castRay(Ray(eye_pos, dir), 1);
+
         }
         UpdateProgress(j / (float)scene.height);
     }
     UpdateProgress(1.f);
 
     // save framebuffer to file
-    FILE* fp = fopen("binary.ppm", "wb");
+    FILE* fp ;
+    fopen_s(&fp, "binary.ppm", "wb");
     (void)fprintf(fp, "P6\n%d %d\n255\n", scene.width, scene.height);
     for (auto i = 0; i < scene.height * scene.width; ++i) {
         static unsigned char color[3];

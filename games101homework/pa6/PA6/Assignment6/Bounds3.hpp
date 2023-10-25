@@ -98,33 +98,58 @@ inline bool Bounds3::IntersectP(const Ray& ray, const Vector3f& invDir,
     // TODO test if ray bound intersects
 
     //float x_left_y = ((pMin.x - ray.origin.x) * ray.direction.y + ray.origin.y * ray.direction.x) * ray.direction_inv.x;
-    //float x_t_min = (pMin.x - ray.origin.x) * ray.direction_inv.x;
-    //float x_t_max = (pMax.x - ray.origin.x) * ray.direction_inv.x;
-    //float y_t_min = (pMin.y - ray.origin.y) * ray.direction_inv.y;
-    //float y_t_max = (pMax.y - ray.origin.y) * ray.direction_inv.y; 
-    //float z_t_min = (pMin.z - ray.origin.z) * ray.direction_inv.z;
-    //float z_t_max = (pMax.z - ray.origin.z) * ray.direction_inv.z;
-    //float t_min = std::max(std::max(x_t_min, y_t_min), z_t_min);
-    //float t_max = std::min(std::min(x_t_max, y_t_max), z_t_max);
+    float x_t_min = (pMin.x - ray.origin.x) * ray.direction_inv.x;
+    float x_t_max = (pMax.x - ray.origin.x) * ray.direction_inv.x;
+    float y_t_min = (pMin.y - ray.origin.y) * ray.direction_inv.y;
+    float y_t_max = (pMax.y - ray.origin.y) * ray.direction_inv.y; 
+    float z_t_min = (pMin.z - ray.origin.z) * ray.direction_inv.z;
+    float z_t_max = (pMax.z - ray.origin.z) * ray.direction_inv.z;
 
-    Vector3f tmin = (pMin - ray.origin) * invDir;
-    Vector3f tmax = (pMax - ray.origin) * invDir;
-    Vector3f t_enter_max = Vector3f::Max(tmin, tmax);
-    Vector3f t_exit_min = Vector3f::Min(tmin, tmax);
-    float t_min = std::max(std::max(t_enter_max.x, t_enter_max.y), t_enter_max.z);
-    float t_max = std::min(std::min(t_exit_min.x, t_exit_min.y), t_exit_min.z);
 
-    //if (t_min >= 0 && t_max >= 0)
-    //{
-    //    if (t_min <= t_max)
-    //    {
-    //        return true;
-    //    }
-    //}else if(t_min < 0 && t_max >= 0)
-    //{
-    //    return true;
-    //}
-    return t_max >= 0 && t_min <= t_max;
+    if (ray.direction_inv.x < 0)
+    {
+        float temp = x_t_min;
+        x_t_min = x_t_max;
+        x_t_max = temp;
+    }
+    if (ray.direction_inv.y < 0)
+    {
+        float temp = y_t_min;
+        y_t_min = y_t_max;
+        y_t_max = temp;
+    }
+    if (ray.direction_inv.z < 0)
+    {
+        float temp = z_t_min;
+        z_t_min = z_t_max;
+        z_t_max = temp;
+    }
+
+
+    float t_min = std::max(std::max(x_t_min, y_t_min), z_t_min);
+    float t_max = std::min(std::min(x_t_max, y_t_max), z_t_max);
+
+
+
+    if (t_min >= 0 && t_max >= 0)
+    {
+        if (t_min <= t_max)
+        {
+            return true;
+        }
+    }else if(t_min < 0 && t_max >= 0)
+    {
+        return true;
+    }
+    return false;
+
+    //Vector3f tmin = (pMin - ray.origin) * invDir;
+    //Vector3f tmax = (pMax - ray.origin) * invDir;
+    //Vector3f t_enter = Vector3f::Min(tmin, tmax);
+    //Vector3f t_exit = Vector3f::Max(tmin, tmax);
+    //float t_min = std::max(std::max(t_enter.x, t_enter.y), t_enter.z);
+    //float t_max = std::min(std::min(t_exit.x, t_exit.y), t_exit.z);
+    //return t_max >= 0 && t_min < t_max;
 }
 
 inline Bounds3 Union(const Bounds3& b1, const Bounds3& b2)

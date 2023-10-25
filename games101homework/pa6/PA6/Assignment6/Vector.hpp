@@ -30,6 +30,7 @@ public:
     double       operator[](int index) const;
     double&      operator[](int index);
 
+    float length() const { return sqrt(x * x + y * y + z * z); }
 
     static Vector3f Min(const Vector3f &p1, const Vector3f &p2) {
         return Vector3f(std::min(p1.x, p2.x), std::min(p1.y, p2.y),

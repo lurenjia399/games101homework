@@ -16,42 +16,73 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="pa6\PA6\Assignment6\README.md" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pa5\Code\global.hpp">
+    <ClInclude Include="pa6\PA6\Assignment6\AreaLight.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pa5\Code\Light.hpp">
+    <ClInclude Include="pa6\PA6\Assignment6\Bounds3.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pa5\Code\Object.hpp">
+    <ClInclude Include="pa6\PA6\Assignment6\BVH.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pa5\Code\Renderer.hpp">
+    <ClInclude Include="pa6\PA6\Assignment6\global.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pa5\Code\Scene.hpp">
+    <ClInclude Include="pa6\PA6\Assignment6\Intersection.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pa5\Code\Sphere.hpp">
+    <ClInclude Include="pa6\PA6\Assignment6\Light.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pa5\Code\Triangle.hpp">
+    <ClInclude Include="pa6\PA6\Assignment6\Material.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pa5\Code\Vector.hpp">
+    <ClInclude Include="pa6\PA6\Assignment6\OBJ_Loader.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pa6\PA6\Assignment6\Object.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pa6\PA6\Assignment6\Ray.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pa6\PA6\Assignment6\Renderer.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pa6\PA6\Assignment6\Scene.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pa6\PA6\Assignment6\Sphere.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pa6\PA6\Assignment6\Triangle.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pa6\PA6\Assignment6\Vector.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pa5\Code\main.cpp">
+    <ClCompile Include="pa6\PA6\Assignment6\BVH.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pa5\Code\Renderer.cpp">
+    <ClCompile Include="pa6\PA6\Assignment6\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pa5\Code\Scene.cpp">
+    <ClCompile Include="pa6\PA6\Assignment6\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="pa6\PA6\Assignment6\Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="pa6\PA6\Assignment6\Vector.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="pa6\PA6\Assignment6\CMakeLists.txt" />
   </ItemGroup>
 </Project>

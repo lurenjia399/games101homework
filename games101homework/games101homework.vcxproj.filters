@@ -18,36 +18,39 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="pa3\Assignment3\Code\global.hpp">
+    <ClInclude Include="pa5\Code\global.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pa3\Assignment3\Code\OBJ_Loader.h">
+    <ClInclude Include="pa5\Code\Light.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pa3\Assignment3\Code\rasterizer.hpp">
+    <ClInclude Include="pa5\Code\Object.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pa3\Assignment3\Code\Shader.hpp">
+    <ClInclude Include="pa5\Code\Renderer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pa3\Assignment3\Code\Texture.hpp">
+    <ClInclude Include="pa5\Code\Scene.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="pa3\Assignment3\Code\Triangle.hpp">
+    <ClInclude Include="pa5\Code\Sphere.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pa5\Code\Triangle.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pa5\Code\Vector.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pa3\Assignment3\Code\main.cpp">
+    <ClCompile Include="pa5\Code\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pa3\Assignment3\Code\rasterizer.cpp">
+    <ClCompile Include="pa5\Code\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="pa3\Assignment3\Code\Texture.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="pa3\Assignment3\Code\Triangle.cpp">
+    <ClCompile Include="pa5\Code\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

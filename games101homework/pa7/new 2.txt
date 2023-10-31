@@ -1,0 +1,46 @@
+Vector3f Scene::castRay(const Ray &ray, int depth) const
+{
+    // TO DO Implement Path Tracing Algorithm here
+    Vector3f L_dir = Vector3f(0.f); // 直接光照的颜色
+    
+
+    Intersection point_Intersection = intersect(ray);
+    if (!point_Intersection.happened) return L_dir;
+
+    Intersection light_Intersection;
+    float light_pdf;
+    sampleLight(light_Intersection, light_pdf);
+    Vector3f p_to_light_dir = (light_Intersection.coords - ray.origin).normalized();
+    Ray p_to_light(ray.origin, p_to_light_dir, (light_Intersection.coords - ray.origin).x / p_to_light_dir.x);
+    // 如果p 到 light 没有object 阻挡
+    if (!this->bvh->IntersectP(p_to_light))
+    {
+        // 按照渲染方程 L_dir = 光的颜色 * brdf + 
+        L_dir = light_Intersection.emit 
+                * point_Intersection.m->eval(Vector3f(), p_to_light_dir, point_Intersection.normal)
+                * dotProduct(p_to_light_dir, point_Intersection.normal) 
+                * dotProduct(-p_to_light_dir, light_Intersection.normal)
+                / std::pow((light_Intersection.coords - point_Intersection.coords).norm(), 2) 
+                / light_pdf;
+    }
+
+    
+    Vector3f L_indir = Vector3f(0.f); // 间接光照的颜色
+    if (get_random_float() < RussianRoulette)
+    {
+        Vector3f p_to_object_dir = point_Intersection.m->sample(ray.direction, point_Intersection.normal).normalized();
+        Ray p_to_object = Ray(point_Intersection.coords, p_to_object_dir); // p点 发射出的任意方向射线
+        Intersection point_Intersection = intersect(p_to_object);
+        if (!point_Intersection.obj->hasEmit())
+        {   // 打中object
+            L_indir = castRay(Ray(point_Intersection.coords, -p_to_object_dir), 0)
+                * point_Intersection.m->eval(Vector3f(), p_to_object_dir, point_Intersection.normal)
+                * dotProduct(p_to_object_dir, point_Intersection.normal)
+                / point_Intersection.m->pdf(Vector3f(), p_to_object_dir, point_Intersection.normal)
+                / RussianRoulette;
+        }
+    }
+    
+
+    return L_dir + L_indir;
+}
